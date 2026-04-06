@@ -1,4 +1,4 @@
-import "@/app/globals.css"; // Замыг нь ингэж сольж үзээрэй
+import "@./globals.css"; // Замыг нь ингэж сольж үзээрэй
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 // _components доторх index.ts-ээс зөв импортлогдож байгааг шалгаарай

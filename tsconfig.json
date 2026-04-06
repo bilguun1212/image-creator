@@ -26,9 +26,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
+    ".next/types/**/*.ts", // Үүнийг үлдээж болно
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".next"] // .next-ийг exclude дотор нэмж өгөх нь найдвартай
 }
