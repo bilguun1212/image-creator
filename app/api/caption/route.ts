@@ -1,0 +1,42 @@
+import { NextRequest, NextResponse } from "next/server";
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: process.env.OPEN_AI_KEY,
+});
+
+export const POST = async (req: NextRequest) => {
+  try {
+    const { imageURL, prompt } = await req.json();
+
+    const response = await openai.chat.completions.create({
+      model: "gpt-4.1-mini",
+      messages: [
+        {
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: prompt || "Describe this image in detail.",
+            },
+            {
+              type: "image_url",
+              image_url: {
+                url: imageURL,
+              },
+            },
+          ],
+        },
+      ],
+      max_tokens: 500,
+    });
+    const caption = response.choices[0]?.message?.content;
+
+    return NextResponse.json({ output: caption });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "something went wrong" },
+      { status: 500 },
+    );
+  }
+};
